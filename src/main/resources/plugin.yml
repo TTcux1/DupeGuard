@@ -1,0 +1,29 @@
+name: DupeGuard
+version: '${version}'
+main: dev.dupeguard.plugin.DupeGuardPlugin
+api-version: '1.21'
+description: Мониторинг подозрительных операций с предметами (антидюп)
+authors: [ "${author}" ]
+
+commands:
+  dupeguard:
+    description: Управление DupeGuard
+    usage: /<command> [alerts|lookup|stats|reload]
+    aliases: [ dg ]
+
+permissions:
+  dupeguard.alerts:
+    description: Получать алерты о подозрительных операциях
+    default: op
+  dupeguard.lookup:
+    description: Смотреть историю находок и статистику
+    default: op
+  dupeguard.admin:
+    description: Перезагружать конфигурацию
+    default: op
+    children:
+      dupeguard.alerts: true
+      dupeguard.lookup: true
+  dupeguard.bypass:
+    description: Не проверять игрока (например, для тестовых аккаунтов)
+    default: false

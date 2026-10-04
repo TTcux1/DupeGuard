@@ -1,0 +1,46 @@
+# DupeGuard — мониторинг подозрительных операций с предметами.
+# Плагин только наблюдает и ничего не отменяет: решения принимает стафф.
+
+detection:
+  # Контейнеры, для которых проверяется «закон сохранения предметов».
+  # Воронки, раздатчики и печи не включены: они сами законно меняют содержимое.
+  audited-containers:
+    - CHEST
+    - BARREL
+    - SHULKER_BOX
+    - ENDER_CHEST
+
+  # Минимальный необъяснимый прирост (в штуках), который считается находкой.
+  min-container-gain: 1
+
+  # Порог кликов в инвентаре за секунду.
+  max-clicks-per-second: 25
+
+  # Ценные предметы, за подбором которых следим.
+  watched-items:
+    - DIAMOND
+    - DIAMOND_BLOCK
+    - NETHERITE_INGOT
+    - NETHERITE_BLOCK
+    - ELYTRA
+    - TOTEM_OF_UNDYING
+    - ENCHANTED_GOLDEN_APPLE
+    - BEACON
+
+  # Сколько ценных предметов одного типа можно подобрать за окно (в секундах).
+  pickup-window-seconds: 10
+  max-pickups-in-window: 64
+
+alerts:
+  # Находки ниже этого уровня пишутся в базу, но стаффу не приходят.
+  # LOW, MEDIUM, HIGH, CRITICAL
+  min-severity: MEDIUM
+
+  # Как часто повторять алерт одного типа по одному игроку.
+  cooldown-seconds: 30
+
+  # URL Discord-вебхука. Пусто — не отправлять.
+  discord-webhook-url: ''
+
+  # Название сервера в сообщениях Discord.
+  server-name: 'Survival'
